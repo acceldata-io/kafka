@@ -1222,10 +1222,8 @@ public class RequestResponseTest {
         for (int i = 0; i < 2; i++) {
             JoinGroupResponseMember member = new JoinGroupResponseData.JoinGroupResponseMember()
                 .setMemberId("consumer" + i)
-                .setMetadata(new byte[0]);
-
-            if (version >= 5)
-                member.setGroupInstanceId("instance" + i);
+                .setMetadata(new byte[0])
+                .setGroupInstanceId("instance" + i);
 
             members.add(member);
         }
