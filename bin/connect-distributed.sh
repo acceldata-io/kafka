@@ -42,13 +42,4 @@ case $COMMAND in
     ;;
 esac
 
-CONFIG_FILE="$base_dir/../config/kafka-connect-distributed.properties"
-JMX_PORT=$(grep "^kafka.connect.jmx.port=" "$CONFIG_FILE" | cut -d'=' -f2)
-
-export KAFKA_JMX_OPTS="-Dcom.sun.management.jmxremote=true
-    -Dcom.sun.management.jmxremote.authenticate=false
-    -Dcom.sun.management.jmxremote.ssl=false
-    -Djava.rmi.server.hostname=localhost
-    -Dcom.sun.management.jmxremote.port=$JMX_PORT"
-
 exec $(dirname $0)/kafka-run-class.sh $EXTRA_ARGS org.apache.kafka.connect.cli.ConnectDistributed "$@"
