@@ -238,7 +238,7 @@ done
 # Set JMX options based on whether it's Kafka Connect
 if $IS_KAFKA_CONNECT; then
   # JMX options for Kafka Connect
-  KAFKA_JMX_OPTS=" -Dcom.sun.management.jmxremote.port=$KAFKA_CONNECT_JMX_PORT"
+  KAFKA_JMX_OPTS="$KAFKA_JMX_OPTS -Dcom.sun.management.jmxremote.port=$KAFKA_CONNECT_JMX_PORT"
 fi
 
 
