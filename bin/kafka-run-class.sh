@@ -220,6 +220,16 @@ if [  $JMX_REMOTE_PORT ]; then
   KAFKA_JMX_OPTS="$KAFKA_JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_REMOTE_PORT "
 fi
 
+
+# Check if the process is for Kafka MM2
+IS_KAFKA_MIRRORMAKER2=false
+for arg in "$@"; do
+  if [[ "$arg" == "org.apache.kafka.connect.mirror.MirrorMaker" ]]; then
+    IS_KAFKA_MIRRORMAKER2=true
+    break
+  fi
+done
+
 # Check if the process is for Kafka Connect (ConnectDistributed or ConnectStandalone)
 IS_KAFKA_CONNECT=false
 for arg in "$@"; do
@@ -228,6 +238,12 @@ for arg in "$@"; do
     break
   fi
 done
+
+# Set JMX options based on whether it's Kafka MM2
+if $IS_KAFKA_MIRRORMAKER2; then
+  # JMX options for Kafka MM2
+  KAFKA_JMX_OPTS="$KAFKA_JMX_OPTS -Dcom.sun.management.jmxremote.port=$MIRRORMAKER2_JMX_PORT"
+fi
 
 # Set JMX options based on whether it's Kafka Connect
 if $IS_KAFKA_CONNECT; then
