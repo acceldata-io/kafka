@@ -220,11 +220,6 @@ if [  $JMX_REMOTE_PORT ]; then
   KAFKA_JMX_OPTS="$KAFKA_JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_REMOTE_PORT "
 fi
 
-### KAFKA MM2 JMX port inclusion
-if [ -z "$MIRRORMAKER2_JMX_PORT" ]; then
-  KAFKA_MIRRORMAKER2_JMX_PORT=${MIRRORMAKER2_JMX_PORT:-9995}  # Default JMX port for Kafka MM2
-fi
-
 # Check if the process is for Kafka MM2
 IS_KAFKA_MIRRORMAKER2=false
 for arg in "$@"; do
