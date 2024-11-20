@@ -220,11 +220,6 @@ if [  $JMX_REMOTE_PORT ]; then
   KAFKA_JMX_OPTS="$KAFKA_JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_REMOTE_PORT "
 fi
 
-### KAFKA CONNECT JMX port inclusion
-if [ -z "$KAFKA_CONNECT_JMX_PORT" ]; then
-  KAFKA_CONNECT_JMX_PORT=${CONNECT_JMX_PORT:-9994}
-fi
-
 # Check if the process is for Kafka Connect (ConnectDistributed or ConnectStandalone)
 IS_KAFKA_CONNECT=false
 for arg in "$@"; do
@@ -237,7 +232,7 @@ done
 # Set JMX options based on whether it's Kafka Connect
 if $IS_KAFKA_CONNECT; then
   # JMX options for Kafka Connect
-  KAFKA_JMX_OPTS="$KAFKA_JMX_OPTS -Dcom.sun.management.jmxremote.port=$KAFKA_CONNECT_JMX_PORT"
+  KAFKA_JMX_OPTS="$KAFKA_JMX_OPTS -Dcom.sun.management.jmxremote.port=$CONNECT_JMX_PORT"
 fi
 
 # Log directory to use
