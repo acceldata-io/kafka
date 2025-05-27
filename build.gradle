@@ -54,7 +54,7 @@ spotless {
 allprojects {
 
   repositories {
-    mavenCentral()
+    //mavenCentral()
     maven {
         url "http://repo1.acceldata.dev/repository/odp-central/"
        }
@@ -779,6 +779,7 @@ project(':core') {
     compile(libs.zookeeper) {
       exclude module: 'slf4j-log4j12'
       exclude module: 'log4j'
+      exclude module: 'slf4j-api'
     }
     // ZooKeeperMain depends on commons-cli but declares the dependency as `provided`
     compile libs.commonsCli
