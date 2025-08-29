@@ -54,7 +54,7 @@ spotless {
 allprojects {
 
   repositories {
-    mavenCentral()
+    // mavenCentral()
     maven {
         url "http://repo1.acceldata.dev/repository/odp-staging-central/"
        }
