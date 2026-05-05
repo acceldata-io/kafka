@@ -94,7 +94,7 @@ allprojects {
             // be explicit about the Netty dependency version instead of relying on the version set by
             // ZooKeeper (potentially older and containing CVEs)
             libs.nettyHandler,
-            libs.nettyTransportNativeEpoll
+            libs.nettyTransportNativeEpoll,
             // CVE-2025-67030: Directory Traversal in Expand.extractFile, fixed in 4.0.3
             libs.plexusUtils
           )
