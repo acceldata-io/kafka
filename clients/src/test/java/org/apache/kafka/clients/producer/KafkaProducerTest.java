@@ -889,7 +889,7 @@ public class KafkaProducerTest {
         ProducerMetadata metadata = mock(ProducerMetadata.class);
         MockClient client = new MockClient(time, metadata);
         client.updateMetadata(initialUpdateResponse);
-        client.prepareResponse(FindCoordinatorResponse.prepareResponse(Errors.NONE, "some.id", host1));
+        client.prepareResponse(FindCoordinatorResponse.prepareResponse(Errors.NONE, host1));
         client.prepareResponse(initProducerIdResponse(1L, (short) 5, Errors.NONE));
 
         when(metadata.fetch()).thenReturn(onePartitionCluster);
@@ -922,7 +922,7 @@ public class KafkaProducerTest {
         MockTime mockTime = new MockTime();
 
         MockClient client = new MockClient(mockTime, metadata);
-        client.prepareResponse(FindCoordinatorResponse.prepareResponse(Errors.NONE, "some.id", host1));
+        client.prepareResponse(FindCoordinatorResponse.prepareResponse(Errors.NONE, host1));
         client.prepareResponse(initProducerIdResponse(1L, (short) 5, Errors.NONE));
 
         AtomicInteger invocationCount = new AtomicInteger(0);
@@ -959,7 +959,7 @@ public class KafkaProducerTest {
         MockTime mockTime = new MockTime();
 
         MockClient client = new MockClient(mockTime, metadata);
-        client.prepareResponse(FindCoordinatorResponse.prepareResponse(Errors.NONE, "some.id", host1));
+        client.prepareResponse(FindCoordinatorResponse.prepareResponse(Errors.NONE, host1));
         client.prepareResponse(initProducerIdResponse(1L, (short) 5, Errors.NONE));
 
         AtomicInteger invocationCount = new AtomicInteger(0);
@@ -995,7 +995,7 @@ public class KafkaProducerTest {
         metadata.updateWithCurrentRequestVersion(initialUpdateResponse, false, time.milliseconds());
 
         MockClient client = new MockClient(time, metadata);
-        client.prepareResponse(FindCoordinatorResponse.prepareResponse(Errors.NONE, "some.id", host1));
+        client.prepareResponse(FindCoordinatorResponse.prepareResponse(Errors.NONE, host1));
         client.prepareResponse(initProducerIdResponse(1L, (short) 5, Errors.NONE));
 
         String invalidTopicName = "topic abc"; // Invalid topic name due to space
