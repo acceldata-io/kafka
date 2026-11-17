@@ -716,8 +716,10 @@ public final class RecordAccumulator {
      */
     public void awaitFlushCompletion() throws InterruptedException {
         try {
+            // We use awaitAllDependents() here instead of await() to ensure that if any batch
+            // was split into multiple batches, we wait for all the split batches to complete.
             for (ProducerBatch batch : this.incomplete.copyAll())
-                batch.produceFuture.await();
+                batch.produceFuture.awaitAllDependents();
         } finally {
             this.flushesInProgress.decrementAndGet();
         }
